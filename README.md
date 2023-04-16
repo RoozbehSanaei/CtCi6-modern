@@ -8,7 +8,9 @@ C++ and Python languages offer an extensive array of modern features that equip 
 
 **Expressiveness**: Modern language features can make code more expressive, allowing developers to write code that is more concise and more straightforward to reason about.
 
-**Security**: Modern language features can help reduce the likelihood of errors and vulnerabilities, thus making code more secure.
+**Better memory management**: Modern language features often provide more efficient memory management techniques, such as garbage collection or automatic memory allocation.
+
+**More robust error handling**: Modern languages often come with more advanced error handling capabilities, allowing developers to catch and handle errors more effectively.
 
 **Efficiency**: Modern language features can help improve code performance, making applications more efficient and cost-effective.
 
