@@ -1,6 +1,6 @@
 import unittest
 from collections import defaultdict
-from test import *
+from calculate_test_times import calculate_test_times
 
 
 def is_unique_chars_pythonic(string):
@@ -21,7 +21,7 @@ class Test(unittest.TestCase):
         is_unique_chars_pythonic    ]
 
     def test(self):
-        calculate_time(self.test_cases,self.testable_functions)
+        calculate_test_times(self.test_cases,self.testable_functions)
 
 
 

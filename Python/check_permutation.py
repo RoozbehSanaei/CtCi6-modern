@@ -1,5 +1,5 @@
 import unittest
-from test import *
+from calculate_test_times import calculate_test_times
 
 def check_permutation_by_sort(s1, s2):
     if len(s1) != len(s2):
@@ -27,7 +27,7 @@ class Test(unittest.TestCase):
         check_permutation_by_sort    ]
 
     def test(self):
-        calculate_time(self.test_cases,self.testable_functions)
+        calculate_test_times(self.test_cases,self.testable_functions)
 
 
     
