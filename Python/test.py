@@ -2,7 +2,7 @@ from collections import defaultdict
 import time
 import unittest
 
-def mytest(test_cases,test_functions):
+def calculate_time(test_cases,test_functions):
     num_runs = 1000
     function_runtimes = defaultdict(float)
 

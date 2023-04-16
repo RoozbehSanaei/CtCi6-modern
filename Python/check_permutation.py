@@ -27,7 +27,7 @@ class Test(unittest.TestCase):
         check_permutation_by_sort    ]
 
     def test(self):
-        mytest(self.test_cases,self.testable_functions)
+        calculate_time(self.test_cases,self.testable_functions)
 
 
     
