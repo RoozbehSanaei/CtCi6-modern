@@ -24,14 +24,16 @@ no repeated characters in the string, so the function returns true. Otherwise, i
 
 Overall, &([&](const char c) { ... }) defines a lambda function that captures the 
 char_set variable by reference and takes a single char argument named c. 
-The lambda function tries to insert the char argument c into the char_set and 
-returns true if the insertion fails, indicating that the character is not unique. 
 
 The insert function returns a pair of values: 
 the first value is an iterator pointing to the inserted element  (or the already existing element in the set), 
 and the second value is a bool indicating whether the insertion was successful.
 In this case, the ! operator negates the second value, so the expression !char_set.insert(c).second returns true
 if the insertion was not successful, which means that the character is already in the set (i.e., it is not unique).
+
+The lambda function tries to insert the char argument c into the char_set and 
+returns true if the insertion fails, indicating that the character is not unique. 
+
 Therefore, this line of code effectively checks whether the current character in the string is unique or not, based on whether it can be inserted into the set or not.
 
 */
