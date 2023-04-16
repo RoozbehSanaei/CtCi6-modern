@@ -12,6 +12,6 @@ C++ and Python languages offer an extensive array of modern features that equip 
 
 **Efficiency**: Modern language features can help improve code performance, making applications more efficient and cost-effective.
 
-***Scalability**: Modern language features can help make code more scalable, allowing software systems to handle an increased workload without compromising performance.
+**Scalability**: Modern language features can help make code more scalable, allowing software systems to handle an increased workload without compromising performance.
 
 **Evolvability**: Modern language features offer developers new ways of approaching problems and writing code, making it possible to write software that is more flexible and adaptable to changing requirements.
