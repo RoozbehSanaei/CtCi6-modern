@@ -8,7 +8,6 @@ using namespace std;
 
 
 /*
-We can use the std::string_view class to avoid copying the string when passing it to the function. 
 std::string_view is a lightweight object that provides read-only access to a string without copying it. 
 
 We  use the constexpr specifier to make the function's size check a compile-time constant expression.
@@ -19,7 +18,15 @@ an empty unordered_set called char_set that will be used to store the characters
 If the std::find_if algorithm reaches the end of the string without finding a repeated character, it returns an iterator to str.end(), which is compared to the result of the expression std::find_if(...) using the == operator. If they are equal, it means that there are 
 no repeated characters in the string, so the function returns true. Otherwise, it returns false.
 
-The lambda function takes a character c as input and tries to insert  it into the unordered_set called char_set.
+[&] is called the capture list, which defines how the lambda function captures variables from the enclosing scope. In this case, & indicates that we want to capture all variables by reference.
+
+(const char c) is the parameter list, which specifies the parameters that the lambda function will accept. In this case, the lambda function takes a single parameter of type char named c.
+
+Overall, &([&](const char c) { ... }) defines a lambda function that captures the 
+char_set variable by reference and takes a single char argument named c. 
+The lambda function tries to insert the char argument c into the char_set and 
+returns true if the insertion fails, indicating that the character is not unique. 
+
 The insert function returns a pair of values: 
 the first value is an iterator pointing to the inserted element  (or the already existing element in the set), 
 and the second value is a bool indicating whether the insertion was successful.
