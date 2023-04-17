@@ -1,10 +1,9 @@
 import unittest
 from calculate_test_times import calculate_test_times
 
-def check_permutation_by_sort(s1, s2):
-    if len(s1) != len(s2):
-        return False
-    return all(c1 == c2 for c1, c2 in zip(sorted(s1), sorted(s2)))
+'
+def check_permutation_by_sort(str1, str2):
+    return sorted(str1) == sorted(str2)'
 
 
 class Test(unittest.TestCase):
@@ -23,6 +22,8 @@ class Test(unittest.TestCase):
         ("aaab", "bbba", False),
     )
 
+
+\
     testable_functions = [
         check_permutation_by_sort    ]
 
