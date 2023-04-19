@@ -1,9 +1,5 @@
 {
-    "cmake.configureOnOpen": true,
     "files.associations": {
-        "tuple": "cpp",
-        "functional": "cpp",
-        "iostream": "cpp",
-        "ostream": "cpp"
+        "ranges": "cpp"
     }
 }
