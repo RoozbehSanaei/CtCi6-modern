@@ -5,6 +5,7 @@
 #include <vector>
 #include <tuple>
 #include <cassert>
+#include <array>
 
 using namespace std;
 
@@ -44,7 +45,7 @@ bool arePermutation2(const std::string& str1, const std::string& str2)
 {
   if (str1.length() != str2.length()) return false;
   
-  std::array<int, 256> count{};
+  std::array<int, 256> count;   
 
   for (char c : str1) ++count[static_cast<unsigned char>(c)];
   for (char c : str2) if (--count[static_cast<unsigned char>(c)] < 0) return false;
@@ -73,7 +74,7 @@ int main()
   i = 1;
   for (auto [a, b, expected_output] : test_cases)
   {
-    int output = arePermutation_2(a, b);
+    int output = arePermutation2(a, b);
     assert(output == expected_output);
     std::cout << "Method 2, Test case " << i++ << " passed\n";
   }
