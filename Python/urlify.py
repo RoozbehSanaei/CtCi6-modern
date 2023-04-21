@@ -44,7 +44,19 @@ def urlify_algo(string, length):
     # convert back to string
     return "".join(char_list[new_index:])
 
-#pythonic
+
+
+'''
+The parameter "string" is the original string that needs to be transformed.
+The parameter "length" is the maximum length of the string that needs to be transformed.
+ Any characters in the original string beyond this length will be ignored.
+
+The function uses the string method "split()" to split the string into a list of words, 
+based on the spaces in the original string.
+It then uses the string method "join()" to join the words in the list back together, 
+using '%20' as the separator.
+The final result is the transformed string with spaces replaced by '%20'.
+'''
 def urlify_algo(string, length):
     return '%20'.join(string[:length].split()) 
 
