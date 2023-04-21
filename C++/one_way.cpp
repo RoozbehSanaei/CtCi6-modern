@@ -30,19 +30,29 @@ indicating that the two input strings are at most one edit operation away from e
 
 */
 
+// Check if two strings are one edit away from each other
 bool isOneAway(const std::string& s1, const std::string& s2){
+    // Determine which string is longer and which is shorter
     const std::string& a = (s1.length() >= s2.length()) ? s1 : s2;
     const std::string& b = (s1.length() < s2.length()) ? s1 : s2;
+
+    // Check if the length difference between the two strings is greater than 1
     if (a.length() - b.length() > 1) return false;
+
+    // Iterate through both strings and check for differences
     bool mismatch = false;
     for (auto i = 0u, j = 0u; i < a.length() && j < b.length(); ++i, ++j)
         if (a[i] != b[j]) {
-            if (mismatch) return false;
+            // If a difference is found, set the 'mismatch' variable to true
+            if (mismatch) return false; // If there's already been a mismatch, return false
             mismatch = true;
-            if (a.length() > b.length()) --j;
+            if (a.length() > b.length()) --j; // Adjust the index of the shorter string to continue checking for differences
         }
+
+    // If at most one difference was found, return true
     return true;
 }
+
 
 int main(void){
 	std::string s1,s2;
