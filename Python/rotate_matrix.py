@@ -25,6 +25,11 @@ def rotate_matrix_double_swap(matrix):
     # Step 2: Flip the matrix horizontally by swapping elements in each row
     for row in matrix:
         for j in range(n//2):
+            ''' 
+            ~j is equivalent to -j-1. It represents the index of the second
+            element to be swapped, counting from the end of the list instead of 
+            the beginning. For example, if j is 2, then ~j is -3.
+            '''
             row[j], row[~j] = row[~j], row[j]
             
     # Return the rotated matrix
@@ -48,23 +53,23 @@ def rotate_matrix_pythonic(matrix):
 
 
 def rotate_matrix_pythonic_alternate(matrix):
-    """rotates a matrix 90 degrees clockwise"""
+        """rotates a matrix 90 degrees clockwise"""
 
-    # Using zip and the unpacking operator (*) to transpose the matrix
-    # and create tuples containing each row of the original matrix.
-    # The tuples will later be turned into reversed rows.
-    # Example: [[1, 2], [3, 4]] -> [(1, 3), (2, 4)]
-    rows = zip(*matrix)
+        # Using zip and the unpacking operator (*) to transpose the matrix
+        # and create tuples containing each row of the original matrix.
+        # The tuples will later be turned into reversed rows.
+        # Example: [[1, 2], [3, 4]] -> [(1, 3), (2, 4)]
+        rows = zip(*matrix)
 
-    # Using a list comprehension to create a new list of reversed rows.
-    # For each tuple in the 'rows' object, the reversed function is applied
-    # to create a new tuple with the order of elements reversed.
-    # The resulting tuple is converted back to a list using the list function.
-    # Example: (1, 3) -> [3, 1]
-    reversed_rows = [list(reversed(row)) for row in rows]
+        # Using a list comprehension to create a new list of reversed rows.
+        # For each tuple in the 'rows' object, the reversed function is applied
+        # to create a new tuple with the order of elements reversed.
+        # The resulting tuple is converted back to a list using the list function.
+        # Example: (1, 3) -> [3, 1]
+        reversed_rows = [list(reversed(row)) for row in rows]
 
-    # The reversed rows are returned as the rotated matrix.
-    return reversed_rows
+        # The reversed rows are returned as the rotated matrix.
+        return reversed_rows
 
 
 
@@ -104,4 +109,4 @@ class Test(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    unittest.main()
+    unittest.main() 
