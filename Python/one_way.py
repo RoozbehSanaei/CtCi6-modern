@@ -28,44 +28,43 @@ def isOneAway(s1: str, s2: str) -> bool:
     return True
 
 class Test(unittest.TestCase):
-    test_cases = [
+    test_cases = {
         # no changes
-        {("pale", "pale"): True},
-        {("", ""), True},
+        ("pale", "pale"): True,
+        ("", ""): True,
         # one insert
-        {("pale", "ple"): True},
-        {("ple", "pale"): True},
-        {("pales", "pale"): True},
-        {("ples", "pales"): True},
-        {("pale", "pkle"): True},
-        {("paleabc", "pleabc"): True},
-        {("", "d"): True},
-        {("d", "de"): True},
+        ("pale", "ple"): True,
+        ("ple", "pale"): True,
+        ("pales", "pale"): True,
+        ("ples", "pales"): True,
+        ("pale", "pkle"): True,
+        ("paleabc", "pleabc"): True,
+        ("", "d"): True,
+        ("d", "de"): True,
         # one replace
-        {("pale", "bale"): True},
-        {("a", "b"): True},
-        {("pale", "ble"): False},
+        ("pale", "bale"): True,
+        ("a", "b"): True,
+        ("pale", "ble"): False,
         # multiple replace
-        {("pale", "bake"): False},
+        ("pale", "bake"): False,
         # insert and replace
-        {("pale", "pse"): False},
-        {("pale", "pas"): False},
-        {("pas", "pale"): False},
-        {("pkle", "pable"): False},
-        {("pal", "palks"): False},
-        {("palks", "pal"): False},
+        ("pale", "pse"): False,
+        ("pale", "pas"): False,
+        ("pas", "pale"): False,
+        ("pkle", "pable"): False,
+        ("pal", "palks"): False,
+        ("palks", "pal"): False,
         # permutation with insert shouldn't match
-        {("ale", "elas"): False},
-    ]
+        ("ale", "elas"): False
+        }
 
     testable_functions = [isOneAway]
 
-    def test_one_away(self):
+    def test_string_rotation(self):
+        for testable_function in self.testable_functions:
+            for args, expected in self.test_cases.items():
+                assert testable_function(*args) == expected, f"Failed {testable_function.__name__} for: {[*args]}"
 
-        for f in self.testable_functions:
-            start = time.perf_counter()
-            for _ in range(100):
-                for text, expected in self.test_cases.items():
-                    assert f(*text) == expected
-            duration = time.perf_counter() - start
-            print(f"{f.__name__} {duration * 1000:.1f}ms")
+
+if __name__ == "__main__":
+    unittest.main()

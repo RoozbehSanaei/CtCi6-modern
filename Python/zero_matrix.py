@@ -43,10 +43,10 @@ class Test(unittest.TestCase):
     testable_functions = [zero_matrix]
 
     def test_zero_matrix(self):
-        for f in self.testable_functions:
+        for testable_function in self.testable_functions:
             for [test_matrix, expected] in self.test_cases:
                 test_matrix = deepcopy(test_matrix)
-                assert f(test_matrix) == expected
+                assert testable_function(test_matrix) == expected, f"Failed {testable_function.__name__} for: {[test_matrix]}"
 
 
 if __name__ == "__main__":

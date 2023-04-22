@@ -8,20 +8,22 @@ def compress1(s):
         return s
 
     # Initialize variables to store compressed string and count of consecutive characters
-    out = ""
+    compressed = ""
     count = 1
     
     # Iterate through the string
     for i in range(1, len(s)+1):
         # If the current character is different from the previous character, append the previous character and its count to the compressed string
         if ((i==len(s)) or (s[i] != s[i-1])):
-            out += s[i-1] + str(count)
+            compressed += s[i-1] + str(count)
             count = 1
         # If the current character is the same as the previous character, increment the count
         else:
             count += 1
     
     # If the length of the compressed string
+    return compressed if len(compressed) < len(s) else s
+
 
 
 
