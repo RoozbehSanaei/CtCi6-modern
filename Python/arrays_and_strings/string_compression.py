@@ -3,6 +3,16 @@ import unittest
 from itertools import groupby
 
 def compress1(s):
+    """
+    Compresses a string by counting the consecutive characters and representing them
+    as the character and its count.
+    
+    Args:
+        s (str): The string to be compressed.
+        
+    Returns:
+        str: The result string if it is shorter than the original string, otherwise the original string.
+    """
     # Check if the length of the string is less than 2
     if len(s) < 2:
         return s
@@ -21,14 +31,24 @@ def compress1(s):
         else:
             count += 1
     
-    # If the length of the compressed string
-    return compressed if len(compressed) < len(s) else s
+    # If the length of the compressed string is shorter than the original
 
 
 
 
+
+from itertools import groupby
 
 def compress2(s):
+    """
+    Compresses a string by replacing consecutive identical characters with a label indicating the character and a count of how many times it appears consecutively.
+
+    Args:
+        s: A string to be compressed.
+
+    Returns:
+        If the compressed string is shorter than the original string, returns the compressed string. Otherwise, returns the original string.
+    """
     # Group consecutive identical characters using itertools.groupby
     groups = groupby(s)
     
@@ -40,7 +60,6 @@ def compress2(s):
     
     # Return the compressed string if it's shorter than the original string, otherwise return the original string
     return compressed if len(compressed) < len(s) else s
-
 
 
 

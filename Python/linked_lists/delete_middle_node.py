@@ -1,8 +1,17 @@
 # Import the LinkedList class from the linked_list module
 from linked_list import LinkedList
 
-# Define a function that deletes a middle node from a linked list
 def delete_middle_node(node):
+    """
+    Given a node in a linked list, this function deletes the node from the linked list.
+    Assumes that the input node is not the last node in the linked list.
+
+    Args:
+        node (Node): The node to be deleted.
+
+    Returns:
+        None
+    """
     # Replace the value of the input node with the value of the next node
     node.value = node.next.value
     # Update the next pointer of the input node to skip the next node and point to the one after it

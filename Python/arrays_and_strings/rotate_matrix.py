@@ -5,6 +5,21 @@ from copy import deepcopy
 def rotate_matrix(matrix):
     """
     Rotates a square matrix 90 degrees clockwise in-place.
+
+    Args:
+        matrix: A square matrix of integers.
+
+    Returns:
+        The modified matrix with elements rotated 90 degrees clockwise.
+
+    Examples:
+        >>> matrix = [[1, 2], [3, 4]]
+        >>> rotate_matrix(matrix)
+        [[3, 1], [4, 2]]
+
+        >>> matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+        >>> rotate_matrix(matrix)
+        [[7, 4, 1], [8, 5, 2], [9, 6, 3]]
     """
     n = len(matrix)  # get length of matrix (number of rows)
     for i in range(n // 2):  # iterate over upper-left quadrant of matrix
@@ -15,21 +30,29 @@ def rotate_matrix(matrix):
     return matrix  # return modified matrix
 
 def rotate_matrix_double_swap(matrix):
+    """
+    Rotates a square matrix 90 degrees clockwise using the double swap technique.
+    
+    Parameters:
+    matrix (list of lists): A square matrix to rotate.
+    
+    Returns:
+    list of lists: The rotated matrix.
+    """
+    
     n = len(matrix)
     
     # Step 1: Transpose the matrix by swapping elements diagonally
     for i in range(n):
         for j in range(i, n):
+            # Swap the elements at (i, j) and (j, i)
             matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
 
     # Step 2: Flip the matrix horizontally by swapping elements in each row
     for row in matrix:
         for j in range(n//2):
-            ''' 
-            ~j is equivalent to -j-1. It represents the index of the second
-            element to be swapped, counting from the end of the list instead of 
-            the beginning. For example, if j is 2, then ~j is -3.
-            '''
+            # Swap the elements at positions j and ~j in the current row
+            # ~j is equivalent to -j-1, and represents the index of the second element to be swapped
             row[j], row[~j] = row[~j], row[j]
             
     # Return the rotated matrix
@@ -37,7 +60,20 @@ def rotate_matrix_double_swap(matrix):
 
 
 def rotate_matrix_pythonic(matrix):
-    """rotates a matrix 90 degrees clockwise"""
+    """
+    Rotates a matrix 90 degrees clockwise.
+
+    Args:
+        matrix (list[list]): The matrix to rotate. Each inner list represents a row.
+
+    Returns:
+        list[list]: The rotated matrix. Each inner list represents a row.
+
+    Example:
+        >>> matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+        >>> rotate_matrix_pythonic(matrix)
+        [[7, 4, 1], [8, 5, 2], [9, 6, 3]]
+    """
 
     # Create a new matrix with reversed rows and columns
     # by using a nested list comprehension
@@ -50,6 +86,7 @@ def rotate_matrix_pythonic(matrix):
     
     # Return the new matrix
     return new_matrix
+
 
 
 def rotate_matrix_pythonic_alternate(matrix):
@@ -71,6 +108,35 @@ def rotate_matrix_pythonic_alternate(matrix):
         # The reversed rows are returned as the rotated matrix.
         return reversed_rows
 
+def rotate_matrix_pythonic_alternate(matrix):
+    """
+    Rotates a matrix 90 degrees clockwise.
+
+    Parameters:
+    -----------
+    matrix : list[list]
+        A matrix represented as a list of lists.
+
+    Returns:
+    --------
+    list[list]
+        The rotated matrix represented as a list of lists.
+    """
+    # Using zip and the unpacking operator (*) to transpose the matrix
+    # and create tuples containing each row of the original matrix.
+    # The tuples will later be turned into reversed rows.
+    # Example: [[1, 2], [3, 4]] -> [(1, 3), (2, 4)]
+    rows = zip(*matrix)
+
+    # Using a list comprehension to create a new list of reversed rows.
+    # For each tuple in the 'rows' object, the reversed function is applied
+    # to create a new tuple with the order of elements reversed.
+    # The resulting tuple is converted back to a list using the list function.
+    # Example: (1, 3) -> [3, 1]
+    reversed_rows = [list(reversed(row)) for row in rows]
+
+    # The reversed rows are returned as the rotated matrix.
+    return reversed_rows
 
 
 class Test(unittest.TestCase):
