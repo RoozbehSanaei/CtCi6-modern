@@ -3,8 +3,20 @@ import unittest
 from copy import deepcopy
 
 def zero_matrix(matrix):
+    # Create a set of row indices containing at least one zero in the input matrix
     zero_rows = {i for i, row in enumerate(matrix) if 0 in row}
+    # Create a set of column indices containing at least one zero in the input matrix
+    # When used with the * operator, zip(*matrix) "unzips" the matrix by transposing it.
+     
+    # It takes each element of the matrix as a separate argument, effectively passing 
+    # the columns of the matrix as separate iterables to zip. The resulting iterator
+    #  returns tuples of the corresponding elements from each of the input iterables, 
+    # effectively returning the rows of the transposed matrix.
+
+
     zero_cols = {i for i, col in enumerate(zip(*matrix)) if 0 in col}
+    # Create a new matrix where each element is set to zero if its row or column index is in the zero_rows or zero_cols sets
+    # Otherwise, the element is kept the same as in the original matrix
     return [[0 if i in zero_rows or j in zero_cols else val for j, val in enumerate(row)] for i, row in enumerate(matrix)]
 
 
