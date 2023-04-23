@@ -4,7 +4,20 @@
 #include <sstream>
 #include <tuple>
 
-// This function takes a string as input and compresses it using a simple algorithm
+/**
+ * Compresses a string using a simple algorithm.
+ *
+ * The algorithm works by counting the number of consecutive characters
+ * and writing them to the output stringstream when the current character
+ * is different from the previous one.
+ *
+ * If the length of the compressed string is less than the length of the
+ * input string, the function returns the compressed string. Otherwise,
+ * it returns the input string.
+ *
+ * @param str The string to compress.
+ * @return The compressed string, or the input string if compression is not beneficial.
+ */
 std::string compress(std::string str)
 {
     // If the length of the string is less than 2, there is nothing to compress
@@ -34,6 +47,7 @@ std::string compress(std::string str)
     // If it is, return the compressed string. Otherwise, return the input string.
     return out.str().length() < str.length() ? out.str() : str;
 }
+
 
 
 int main() {
