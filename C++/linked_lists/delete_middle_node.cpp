@@ -1,5 +1,4 @@
-#include <iostream>
-// This code defines a singly linked list node structure and provides two helper functions, `printList()` and `deleteNode()`.
+#include <iostream> //cout
 
 // Definition of a singly linked list node structure
 struct Node {
