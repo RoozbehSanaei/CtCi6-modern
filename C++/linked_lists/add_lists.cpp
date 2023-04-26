@@ -169,3 +169,150 @@ void padList(Node*& list, int padding) {
     insert(list, 0);
   }
 }
+
+
+// Recursive helper function to add two linked lists representing integers.
+// Takes two linked lists (list1 and list2) and a carry value (carry) as input.
+// Returns a pointer to the head node of the new linked list containing the sum.
+Node * add_followup_helper( Node * list1, Node * list2, int & carry ) {
+  
+  // If both input linked lists and the carry value are null, there are no more digits to add.
+  // Return a null pointer to signify the end of the sum.
+  if ( list1 == nullptr && list2 == nullptr && carry == 0 ) {
+    return nullptr;
+  }
+
+  // Recursively call this function with the next nodes of both input linked lists and the carry value.
+  Node * result = add_followup_helper(list1 ? (list1->next) : nullptr,
+                                      list2 ? (list2->next) : nullptr,
+                                      carry);
+
+  // Calculate the sum of the current nodes and the carry value.
+  int value = carry + (list1 ? list1->data : 0 ) + (list2 ? list2->data : 0);
+
+  // Insert the ones digit of the sum as a new node at the head of the result list.
+  insert( result, value % 10 );
+
+  // Update the carry value based on whether the sum is greater than 9.
+  carry = ( value > 9 ) ? 1 : 0;
+
+  // Return a pointer to the head node of the result list.
+  return result;
+}
+
+
+// Add two linked lists representing integers.
+// Takes two linked lists (list1 and list2) as input.
+// Returns a pointer to the head node of the linked list containing the sum.
+Node * add_followup( Node * list1, Node * list2 ) {
+
+  // Find the length of the two input linked lists.
+  int len1 = length(list1);
+  int len2 = length(list2);
+
+  // Pad the smaller linked list with zeroes so that both lists are the same length.
+  if ( len1 > len2 ) {
+    padList( list2, len1 - len2 );
+  } else {
+    padList( list1, len2 - len1 );
+  }
+
+  // Initialize a carry variable to 0 and call the recursive helper function.
+  int carry = 0;
+  Node * list3 = add_followup_helper( list1, list2, carry);
+
+  // If there is a carry value left over after adding the last digits, insert it as a new node at the head of the sum.
+  if ( carry ) {
+    insert( list3, carry);
+  }
+
+  // Return a pointer to the head node of the sum.
+  return list3;
+}
+
+// Deallocate memory for a linked list.
+// Takes a pointer to the head node of the linked list as input.
+// Sets the head pointer to null after deallocating all nodes.
+void deleteList( Node * & head ) {
+
+  // Initialize a temporary pointer to the next node in the list.
+  Node * nextNode;
+
+  // Traverse the list and deallocate memory for each node.
+  while(head) {
+    // Save the pointer to the next node in the list.
+    nextNode = head->next;
+    // Deallocate memory for the current node.
+    delete(head);
+    // Move the head pointer to the next node.
+    head = nextNode;
+  }
+
+  // Set the head pointer to null after all nodes have been deallocated.
+  head = nullptr;
+}
+
+
+int main()
+{
+  // Create a linked list to represent the number 617
+  Node * list1 = nullptr; // Initialize an empty linked list
+  insert(list1, 6); // Add the digit 6 to the list
+  insert(list1, 1); // Add the digit 1 to the list
+  insert(list1, 7); // Add the digit 7 to the list
+  std::cout << "List1:  "; // Print a message to indicate which list is being printed
+  printList(list1); // Print the linked list
+
+  // Create a linked list to represent the number 295
+  Node * list2 = nullptr; // Initialize an empty linked list
+  insert(list2, 2); // Add the digit 2 to the list
+  insert(list2, 9); // Add the digit 9 to the list
+  insert(list2, 5); // Add the digit 5 to the list
+  std::cout << "List2:  "; // Print a message to indicate which list is being printed
+  printList(list2); // Print the linked list
+
+  // Perform addition of the two linked lists iteratively
+  Node * list3 = add_iterative(list1, list2); // Add the two lists using an iterative approach
+  std::cout << "Iterative Solution: \n"; // Print a message to indicate that the iterative solution is being printed
+  std::cout << "List3:  "; // Print a message to indicate which list is being printed
+  printList(list3); // Print the linked list
+
+  // Perform addition of the two linked lists recursively
+  Node * list4= add_recursive(list1, list2, 0); // Add the two lists using a recursive approach
+  std::cout << "Recursive Solution: \n"; // Print a message to indicate that the recursive solution is being printed
+  std::cout << "List4:  "; // Print a message to indicate which list is being printed
+  printList(list4); // Print the linked list
+
+  // Free the memory used by the linked lists
+  deleteList(list1); // Free the memory used by list1
+  deleteList(list2); // Free the memory used by list2
+  deleteList(list3); // Free the memory used by list3
+  deleteList(list4); // Free the memory used by list4
+
+  // Create two linked lists in the reverse order, to represent numbers 9234 and 889
+  insert(list1, 4); // Add the digit 4 to the list
+  insert(list1, 3); // Add the digit 3 to the list
+  insert(list1, 2); // Add the digit 2 to the list
+  insert(list1, 9); // Add the digit 9 to the list
+  std::cout << "\n\nNow follow up case, lists are stored such that 1's digit is at the tail of list\n";
+  std::cout << "List1:  "; // Print a message to indicate which list is being printed
+  printList(list1); // Print the linked list
+
+  insert(list2, 9); // Add the digit 9 to the list
+  insert(list2, 9); // Add the digit 9 to the list
+  insert(list2, 8); // Add the digit 8 to the list
+
+  std::cout << "List2:  "; // Print a message to indicate which list is being printed
+  printList(list2); // Print the linked list
+
+  list3 = add_followup(list1, list2);  // Add the two lists using the followup approach
+  std::cout << "Adding two above lists\n"; // Print a message to indicate which list is being printed
+  std::cout << "List3:  "; // Print a message to indicate which list is being printed
+  printList(list3); // Print the linked list
+
+  deleteList(list1); //delete the list 1
+  deleteList(list2);//delete the list 2
+  deleteList(list3); //delete the list 3
+
+  return 0;
+}
