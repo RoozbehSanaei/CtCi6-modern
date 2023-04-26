@@ -30,13 +30,6 @@ void insert(Node *&head, int data) {
  * @brief Defines the Node struct for use in linked lists
  */
 
-/**
- * @brief Represents a node in a linked list
- */
-struct Node {
-    int data = 0; ///< The value stored in the node
-    Node * next = nullptr; ///< A pointer to the next node in the list (or nullptr if this is the last node)
-};
 
 /**
  * @brief Prints the values of all the nodes in a linked list
