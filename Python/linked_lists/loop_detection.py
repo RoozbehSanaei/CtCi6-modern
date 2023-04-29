@@ -9,36 +9,66 @@ class Node:
 
         Args:
             data: The value to store in the node.
-            next: The next node in the linked list.
+            next: The next node in the linked list. Defaults to None.
         """
         self.data = data
         self.next = next
 
     def __repr__(self):
+        """
+        Returns a string representation of the Node object.
+
+        Returns:
+            A string representation of the Node object, which is simply the value stored in the node converted to a string.
+        """
         return str(self.data)
 
-def remove_loop(loop_node, head):
+
+def remove_loop(loop_node: Node, head: Node) -> None:
+    """
+    Removes the loop in the linked list.
+
+    :param loop_node: The node where the loop is detected.
+    :param head: The head of the linked list.
+    """
+    # Initialize two pointers ptr1 and ptr2
     ptr1, ptr2 = head, loop_node
 
+    # Move ptr1 and ptr2 one step at a time until they meet at the last node of the loop
     while ptr1.next != ptr2.next:
         ptr1, ptr2 = ptr1.next, ptr2.next
 
+    # Set the next pointer of the last node of the loop to None
     ptr2.next = None
 
-def detect_and_remove_cycle(head):
+
+def detect_and_remove_cycle(head: Node) -> bool:
+    """
+    Detects and removes a cycle in a linked list.
+
+    :param head: The head of the linked list.
+    :return: True if a cycle is detected and removed, otherwise False.
+    """
     if not head:
+        # If the linked list is empty, return False
         return False
 
+    # Initialize two pointers fast_ptr and slow_ptr to the head of the linked list
     fast_ptr = slow_ptr = head
 
+    # Move fast_ptr two steps ahead and slow_ptr one step ahead in each iteration of the while loop
+    # until they meet at some node in the linked list, indicating a cycle
     while slow_ptr and fast_ptr and fast_ptr.next:
         fast_ptr, slow_ptr = fast_ptr.next.next, slow_ptr.next
 
         if fast_ptr == slow_ptr:
+            # If a cycle is detected, call the remove_loop function to remove the cycle
             remove_loop(slow_ptr, head)
             return True
 
+    # If no cycle is detected, return False
     return False
+
 
 
 def insert(head, c):
@@ -104,14 +134,22 @@ def print_list(head):
     # Print the nodes list as a string, with each node's data value separated by an arrow.
     print(" --> ".join(nodes))
 
-
 if __name__ == '__main__':
+    # Create a linked list containing the values 1 to 5
     head = create_linked_list(range(1,6))
+
+    # Print the initial linked list
     print("Current List:")
     print_list(head)
+
+    # Insert a loop by connecting the last node in the list (with a value of 5) to the third node in the list (with a value of 3)
     print("Inserting loop, connecting 5 to 3")
     head.next.next.next.next.next = head.next
+
+    # Detect and remove the loop in the linked list
     print("Detecting and deleting loop")
     detect_and_remove_cycle(head)
+
+    # Print the modified linked list
     print("Back to the same old list")
     print_list(head)
