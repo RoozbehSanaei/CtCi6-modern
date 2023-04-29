@@ -143,15 +143,6 @@ bool isPalindromeIter1(Node* head) {
 }
 
 
-/**
- * @brief Helper function to check whether a sublist is a palindrome recursively.
- * 
- * @param left A reference to the leftmost node of the sublist.
- * @param right A pointer to the rightmost node of the sublist.
- * @return true if the sublist is a palindrome, false otherwise.
- */
-
-
 
 /**
  * @brief Check whether a linked list is a palindrome or not using iterative approach.
@@ -296,3 +287,4 @@ int main()
   printList(head);
   return 0;
 }
+
