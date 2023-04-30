@@ -4,46 +4,6 @@
 #include <iostream>
 #include "stack.h"
 
-template<typename T>
-class StackMin
-{
-public:
-    template<typename U>
-    void push(U &&value)
-    {
-        if (minStack.isEmpty() || value <= minStack.peek())
-            minStack.push(value);
-        stack.push(std::forward<U>(value));
-    }
-
-    T &peek()
-    {
-        return stack.peek();
-    }
-
-    T &min()
-    {
-        return minStack.peek();
-    }
-
-    T pop()
-    {
-        auto value = stack.pop();
-        if (value == min())
-            minStack.pop();
-        return value;
-    }
-
-    bool isEmpty()
-    {
-        return stack.isEmpty();
-    }
-
-private:
-    Stack<T> stack;
-    Stack<T> minStack;
-};
-
 int main()
 {
     StackMin<int> stack;
