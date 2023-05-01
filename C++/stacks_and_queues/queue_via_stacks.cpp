@@ -1,3 +1,20 @@
+
+/* A queue can be implemented using two stacks, where one stack is used to add elements 
+to the rear of the queue, and the other stack is used to remove elements from the front of the queue.
+
+When an element is added to the queue, it is pushed onto the first stack. 
+When an element is removed from the queue, if the second stack is not empty, 
+then the top element is popped and returned. Otherwise, all the elements from
+ the first stack are popped and pushed onto the second stack in reverse order. 
+ This results in the first element pushed into the first stack becoming the 
+ last element in the second stack, which maintains the FIFO (first-in, first-out)
+  property of the queue.
+
+By using two stacks to implement a queue, we can achieve constant-time complexity
+ for enqueue and dequeue operations, as each element is pushed and popped at most twice,
+  resulting in a time complexity of O(1) for each operation.
+*/
+
 #include <iostream>
 #include <stack>
 
@@ -88,9 +105,6 @@ private:
 };
 
 
-int main()
-{
-
 int main() {
     MyQueue<int> queue; // create a new queue object that holds integers
 
@@ -111,5 +125,4 @@ int main() {
         std::cout << "Removed value " << queue.remove() << std::endl; // remove all the remaining integers from the queue and print a message to the console for each integer that is removed
 
     return 1; // return the value 1 to the calling process
-}
 }
