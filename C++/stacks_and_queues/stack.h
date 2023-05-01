@@ -73,7 +73,6 @@ public:
     {
     };
 
-private:
     /**
      * @brief A struct representing a node in the linked list that makes up the stack.
      * 
@@ -90,6 +89,7 @@ private:
          * @param n A pointer to the next node in the stack.
          */
         Node(T &&v, Node *n);
+        Node(const T &v);
 
         /**
          * @brief Constructs a new Node object.
@@ -286,4 +286,11 @@ Stack<T>::Node::Node(const T &v, Node *n) : value(v), next(n)
     // using a copy of the provided value.
 }
 
+template<typename T>
+Stack<T>::Node::Node(const T &v) : value(v), next(nullptr)
+{
+    // This constructor simply initializes the value and next members
+    // using the provided arguments. The value member is initialized
+    // using a copy of the provided value.
+}
 
